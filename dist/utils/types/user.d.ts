@@ -7,6 +7,7 @@ export interface FavoriteListLineItem {
         hasImage: boolean;
         name: string;
     };
+    locked?: boolean;
     quantity: number;
 }
 export interface FavoriteList {
@@ -26,6 +27,7 @@ export interface G_ShoppingListLineItem<Timestamp, StoreDocumentReference, Produ
         storeRef: StoreDocumentReference;
         pricePerUnit: number;
     };
+    locked?: boolean;
     product: {
         brand: string;
         category: string;
