@@ -112,4 +112,5 @@ export interface G_User<StoreDocumentReference> {
   birthYear?: number;
   postalCode?: string;
   displayName?: string;
+  latestAddedProducts?: string[];
 }
