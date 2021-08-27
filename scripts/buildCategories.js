@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 const fs = require('fs');
 
-const rawCat = require('./rawCat.json');
+const rawCat = require('../rawCat.json');
 
 const idMap = {};
 

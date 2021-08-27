@@ -1,9 +1,10 @@
-name: Deploy to Firebase
+name: Deploy to magic branch
 
 on:
   push:
     branches:
       - main
+      - feature/deploy
 
 jobs:
   deploy:
@@ -38,7 +39,7 @@ jobs:
       - name: Build dist
         run: yarn build
       - name: Cleanup folder structure
-        run: rm -rf src prettier.config.js tsconfig.eslint.json tsconfig.json prettier.config.js yarn.lock scripts eslintrc.js .prettierignore .gitignore .github
+        run: rm -rf src prettier.config.js tsconfig.eslint.json tsconfig.json prettier.config.js yarn.lock .eslintrc.js .prettierignore .gitignore .github
       - name: Run deploy script
         run: |
           git config user.name "PiJa Deploy" && git config user.email "it@pija.se"
