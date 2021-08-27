@@ -1,0 +1,1 @@
+node scripts/gh-pages-deploy.js
