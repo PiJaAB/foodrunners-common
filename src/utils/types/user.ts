@@ -113,4 +113,7 @@ export interface G_User<StoreDocumentReference> {
   postalCode?: string;
   displayName?: string;
   latestAddedProducts?: string[];
+  tutorialsSeen?: {
+    discountScene?: boolean;
+  };
 }
