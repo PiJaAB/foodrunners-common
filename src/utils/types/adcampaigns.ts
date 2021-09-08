@@ -26,7 +26,11 @@ export type InternalAdRegion = {
   [key in keyof AdFormats]?: AdFormats[key]['internal'] | boolean;
 };
 
-type TargetDefs<ProductDocumentReference, CouponDocumentReference> = {
+type TargetDefs<
+  ProductDocumentReference,
+  CouponDocumentReference,
+  ExternalCampaignDocumentReference,
+> = {
   product: {
     internal: {
       ref: ProductDocumentReference;
@@ -47,7 +51,7 @@ type TargetDefs<ProductDocumentReference, CouponDocumentReference> = {
   };
   externalCampaign: {
     internal: {
-      ref: CouponDocumentReference;
+      ref: ExternalCampaignDocumentReference;
     };
     public: {
       refPath: string;
@@ -64,31 +68,40 @@ type TargetDefs<ProductDocumentReference, CouponDocumentReference> = {
   };
 };
 
-export type G_AdTargets<ProductDocumentReference, CouponDocumentReference> = {
+export type G_AdTargets<
+  ProductDocumentReference,
+  CouponDocumentReference,
+  ExternalCampaignDocumentReference,
+> = {
   [key in keyof TargetDefs<
     ProductDocumentReference,
-    CouponDocumentReference
+    CouponDocumentReference,
+    ExternalCampaignDocumentReference
   >]: {
     internal: {
       [key2 in
         | keyof TargetDefs<
             ProductDocumentReference,
-            CouponDocumentReference
+            CouponDocumentReference,
+            ExternalCampaignDocumentReference
           >[key]['internal']
         | 'type']: (TargetDefs<
         ProductDocumentReference,
-        CouponDocumentReference
+        CouponDocumentReference,
+        ExternalCampaignDocumentReference
       >[key]['internal'] & { type: key })[key2];
     };
     public: {
       [key2 in
         | keyof TargetDefs<
             ProductDocumentReference,
-            CouponDocumentReference
+            CouponDocumentReference,
+            ExternalCampaignDocumentReference
           >[key]['public']
         | 'type']: (TargetDefs<
         ProductDocumentReference,
-        CouponDocumentReference
+        CouponDocumentReference,
+        ExternalCampaignDocumentReference
       >[key]['public'] & { type: key })[key2];
     };
   };
@@ -97,28 +110,35 @@ export type G_AdTargets<ProductDocumentReference, CouponDocumentReference> = {
 export type G_InternalAdTarget<
   ProductDocumentReference,
   CouponDocumentReference,
+  ExternalCampaignDocumentReference,
 > = G_AdTargets<
   ProductDocumentReference,
-  CouponDocumentReference
+  CouponDocumentReference,
+  ExternalCampaignDocumentReference
 >[keyof G_AdTargets<
   ProductDocumentReference,
-  CouponDocumentReference
+  CouponDocumentReference,
+  ExternalCampaignDocumentReference
 >]['internal'];
 export type G_PublicAdTarget<
   ProductDocumentReference,
   CouponDocumentReference,
+  ExternalCampaignDocumentReference,
 > = G_AdTargets<
   ProductDocumentReference,
-  CouponDocumentReference
+  CouponDocumentReference,
+  ExternalCampaignDocumentReference
 >[keyof G_AdTargets<
   ProductDocumentReference,
-  CouponDocumentReference
+  CouponDocumentReference,
+  ExternalCampaignDocumentReference
 >]['public'];
 
 export interface G_AdCampaign<
   Timestamp,
   ProductDocumentReference,
   CouponDocumentReference,
+  ExternalCampaignDocumentReference,
 > {
   name: string;
   published: boolean;
@@ -133,10 +153,12 @@ export interface G_AdCampaign<
   clicks?: number | null;
   target: G_AdTargets<
     ProductDocumentReference,
-    CouponDocumentReference
+    CouponDocumentReference,
+    ExternalCampaignDocumentReference
   >[keyof G_AdTargets<
     ProductDocumentReference,
-    CouponDocumentReference
+    CouponDocumentReference,
+    ExternalCampaignDocumentReference
   >]['internal'];
 }
 
@@ -147,6 +169,7 @@ export type AdRegion = {
 export interface G_PublicAdCampaign<
   ProductDocumentReference,
   CouponDocumentReference,
+  ExternalCampaignDocumentReference,
 > {
   name: string;
   refPath: string;
@@ -156,9 +179,11 @@ export interface G_PublicAdCampaign<
   regions: Partial<Record<AdRegions, AdRegion>>;
   target: G_AdTargets<
     ProductDocumentReference,
-    CouponDocumentReference
+    CouponDocumentReference,
+    ExternalCampaignDocumentReference
   >[keyof G_AdTargets<
     ProductDocumentReference,
-    CouponDocumentReference
+    CouponDocumentReference,
+    ExternalCampaignDocumentReference
   >]['public'];
 }
