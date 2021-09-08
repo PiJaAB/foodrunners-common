@@ -103,6 +103,14 @@ export interface GroupMembership {
   description: string;
 }
 
+export type Tutorials =
+  | 'DiscountsScene'
+  | 'CouponScene'
+  | 'FavoriteListsScene'
+  | 'SearchScene'
+  | 'ShoppingListScene'
+  | 'PromoCodesScene';
+
 export interface G_User<StoreDocumentReference> {
   homeStore?: {
     name: string;
@@ -113,7 +121,5 @@ export interface G_User<StoreDocumentReference> {
   postalCode?: string;
   displayName?: string;
   latestAddedProducts?: string[];
-  tutorialsSeen?: {
-    discountScene?: boolean;
-  };
+  tutorialsSeen?: Partial<Record<Tutorials, boolean>>;
 }
