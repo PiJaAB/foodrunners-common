@@ -45,6 +45,15 @@ type TargetDefs<ProductDocumentReference, CouponDocumentReference> = {
       id: string;
     };
   };
+  externalCampaign: {
+    internal: {
+      ref: CouponDocumentReference;
+    };
+    public: {
+      refPath: string;
+      id: string;
+    };
+  };
   external: {
     internal: {
       uri: string;
