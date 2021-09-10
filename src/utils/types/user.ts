@@ -44,6 +44,11 @@ export interface G_ShoppingListLineItem<
     productGroup?: string | null;
     ref: ProductDocumentReference; // reference
   };
+  adSource?: {
+    id: string;
+    region: string;
+    format: string;
+  };
   homePrice?: number;
   storePrice?: number;
   quantity: number;
