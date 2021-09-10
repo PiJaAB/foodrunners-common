@@ -139,6 +139,10 @@ type ConstraintDefs = {
   groupmember: {
     id: string;
   };
+  age: {
+    max?: number;
+    min?: number;
+  };
   postalcode: {
     postalCode: string;
   };
