@@ -11,6 +11,7 @@ export interface G_ExternalCampaign<Timestamp> {
   textColor: string;
   bgColor: string;
   text: string;
+  bottomText?: string | null;
   published: boolean;
   validUntil: Timestamp;
   constraint?: Constraint | null;
@@ -22,6 +23,7 @@ export interface G_PublicExternalCampaign<ExternalCampaignRef, Timestamp> {
   openInWebview: boolean;
   name: string;
   text: string;
+  bottomText?: string | null;
   imagePath: string;
   textColor: string;
   bgColor: string;
