@@ -152,9 +152,12 @@ export interface G_AdCampaign<
   };
   regions: Partial<Record<AdRegions, InternalAdRegion>>;
   constraint?: Constraint | null;
-  maxClicks?: number | null;
-  weight: number;
+  statsLastUpdated?: string;
   clicks?: number | null;
+  maxClicks?: number | null;
+  views?: number | null;
+  maxViews?: number | null;
+  weight: number;
   target: G_AdTargets<
     ProductDocumentReference,
     CouponDocumentReference,
