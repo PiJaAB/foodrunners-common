@@ -1,6 +1,18 @@
 /* eslint-disable @typescript-eslint/naming-convention */
 import type { Constraint } from './constraints';
 
+export const existingAdRegions = [
+  'shoppingList',
+  'search',
+  'activeList',
+  'coupons',
+  'promotions',
+] as const;
+
+export const existingAdFormats = [
+  'banner',
+] as const;
+
 export type AdFormats = {
   banner: {
     public: {
@@ -12,18 +24,10 @@ export type AdFormats = {
   };
 };
 
-export const existingAdRegions = [
-  'shoppingList',
-  'search',
-  'activeList',
-  'coupons',
-  'promotions',
-] as const;
-
 export type AdRegions = typeof existingAdRegions[number];
 
 export type InternalAdRegion = {
-  [key in keyof AdFormats]?: AdFormats[key]['internal'] | boolean;
+  [key in typeof existingAdFormats[number]]?: AdFormats[key]['internal'] | boolean;
 };
 
 type TargetDefs<
