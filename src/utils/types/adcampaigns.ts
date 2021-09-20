@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/naming-convention */
+import { G_AppTargets } from './appTarget';
 import type { Constraint } from './constraints';
 
 export const existingAdRegions = [
@@ -9,9 +10,7 @@ export const existingAdRegions = [
   'promotions',
 ] as const;
 
-export const existingAdFormats = [
-  'banner',
-] as const;
+export const existingAdFormats = ['banner'] as const;
 
 export type AdFormats = {
   banner: {
@@ -27,89 +26,23 @@ export type AdFormats = {
 export type AdRegions = typeof existingAdRegions[number];
 
 export type InternalAdRegion = {
-  [key in typeof existingAdFormats[number]]?: AdFormats[key]['internal'] | boolean;
-};
-
-type TargetDefs<
-  ProductDocumentReference,
-  CouponDocumentReference,
-  ExternalCampaignDocumentReference,
-> = {
-  product: {
-    internal: {
-      ref: ProductDocumentReference;
-    };
-    public: {
-      refPath: string;
-      id: string;
-    };
-  };
-  coupon: {
-    internal: {
-      ref: CouponDocumentReference;
-    };
-    public: {
-      refPath: string;
-      id: string;
-    };
-  };
-  externalCampaign: {
-    internal: {
-      ref: ExternalCampaignDocumentReference;
-    };
-    public: {
-      refPath: string;
-      id: string;
-    };
-  };
-  external: {
-    internal: {
-      uri: string;
-    };
-    public: {
-      uri: string;
-    };
-  };
+  [key in typeof existingAdFormats[number]]?:
+    | AdFormats[key]['internal']
+    | boolean;
 };
 
 export type G_AdTargets<
   ProductDocumentReference,
   CouponDocumentReference,
   ExternalCampaignDocumentReference,
-> = {
-  [key in keyof TargetDefs<
+> = Omit<
+  G_AppTargets<
     ProductDocumentReference,
     CouponDocumentReference,
     ExternalCampaignDocumentReference
-  >]: {
-    internal: {
-      [key2 in
-        | keyof TargetDefs<
-            ProductDocumentReference,
-            CouponDocumentReference,
-            ExternalCampaignDocumentReference
-          >[key]['internal']
-        | 'type']: (TargetDefs<
-        ProductDocumentReference,
-        CouponDocumentReference,
-        ExternalCampaignDocumentReference
-      >[key]['internal'] & { type: key })[key2];
-    };
-    public: {
-      [key2 in
-        | keyof TargetDefs<
-            ProductDocumentReference,
-            CouponDocumentReference,
-            ExternalCampaignDocumentReference
-          >[key]['public']
-        | 'type']: (TargetDefs<
-        ProductDocumentReference,
-        CouponDocumentReference,
-        ExternalCampaignDocumentReference
-      >[key]['public'] & { type: key })[key2];
-    };
-  };
-};
+  >,
+  never
+>;
 
 export type G_InternalAdTarget<
   ProductDocumentReference,

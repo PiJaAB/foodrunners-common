@@ -127,4 +127,7 @@ export interface G_User<StoreDocumentReference> {
   displayName?: string;
   latestAddedProducts?: string[];
   tutorialsSeen?: Partial<Record<Tutorials, boolean>>;
+  allowTestNotifications?: boolean;
+  deviceTokens?: string[];
+  hasDeviceToken?: boolean;
 }
