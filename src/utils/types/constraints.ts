@@ -1,4 +1,5 @@
-/* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/naming-convention */
+/* eslint-disable @typescript-eslint/naming-convention */
+import type { PublicAppTarget } from './appTarget';
 import type { G_User } from './user';
 
 interface DecodedIdToken {
@@ -124,12 +125,13 @@ interface DecodedIdToken {
   [key: string]: any;
 }
 
-export interface G_ConstraintData<StoreDocumentReference> {
+export interface G_ConstraintData<StoreDocumentReference, DocumentSnapshot> {
   auth?: {
     uid: string;
-    token: DecodedIdToken;
+    token?: DecodedIdToken;
   };
   currentUser?: G_User<StoreDocumentReference> | null;
+  dataRefCache?: Map<string, Promise<DocumentSnapshot> | DocumentSnapshot>;
 }
 
 type ConstraintDefs = {
@@ -151,6 +153,9 @@ type ConstraintDefs = {
   };
   or: {
     children: Constraint[];
+  };
+  accessTarget: {
+    target: PublicAppTarget;
   };
 };
 

@@ -1,6 +1,7 @@
 {
   "name": "foodrunners-common",
   "version": "1.0.0",
+  "private": true,
   "main": "dist/index.js",
   "license": "UNLICENSED",
   "scripts": {

@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/naming-convention */
-import { G_AppTargets } from './appTarget';
+import type { G_AppTargets } from './appTarget';
 import type { Constraint } from './constraints';
 
 export const existingAdRegions = [
@@ -57,18 +57,10 @@ export type G_InternalAdTarget<
   CouponDocumentReference,
   ExternalCampaignDocumentReference
 >]['internal'];
-export type G_PublicAdTarget<
-  ProductDocumentReference,
-  CouponDocumentReference,
-  ExternalCampaignDocumentReference,
-> = G_AdTargets<
-  ProductDocumentReference,
-  CouponDocumentReference,
-  ExternalCampaignDocumentReference
->[keyof G_AdTargets<
-  ProductDocumentReference,
-  CouponDocumentReference,
-  ExternalCampaignDocumentReference
+export type PublicAdTarget = G_AdTargets<never, never, never>[keyof G_AdTargets<
+  never,
+  never,
+  never
 >]['public'];
 
 export interface G_AdCampaign<

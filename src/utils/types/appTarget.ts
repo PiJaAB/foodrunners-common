@@ -93,16 +93,8 @@ export type G_InternalAppTarget<
   CouponDocumentReference,
   ExternalCampaignDocumentReference
 >]['internal'];
-export type G_PublicAppTarget<
-  ProductDocumentReference,
-  CouponDocumentReference,
-  ExternalCampaignDocumentReference,
-> = G_AppTargets<
-  ProductDocumentReference,
-  CouponDocumentReference,
-  ExternalCampaignDocumentReference
->[keyof G_AppTargets<
-  ProductDocumentReference,
-  CouponDocumentReference,
-  ExternalCampaignDocumentReference
->]['public'];
+export type PublicAppTarget = G_AppTargets<
+  never,
+  never,
+  never
+>[keyof G_AppTargets<never, never, never>]['public'];
