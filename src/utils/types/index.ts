@@ -23,3 +23,4 @@ export * from './store';
 export * from './user';
 export * from './externalCampaign';
 export * from './appTarget';
+export * from './pushNotifications';
