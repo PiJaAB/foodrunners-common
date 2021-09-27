@@ -60,6 +60,7 @@ export interface G_ClaimedMobileCoupon<Timestamp, CouponDocumentReference>
     CouponDocumentReference
   > {
   instanceClaimed: true;
+  notificationSent?: boolean;
   couponInstance: CouponInstance<'mobile', Timestamp> & {
     code: string;
   } & (
@@ -81,6 +82,7 @@ export interface G_ClaimedPrintCoupon<Timestamp, CouponDocumentReference>
     CouponDocumentReference
   > {
   instanceClaimed: true;
+  notificationSent?: boolean;
   couponInstance: CouponInstance<'print', Timestamp>;
 }
 
