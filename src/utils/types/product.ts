@@ -27,6 +27,7 @@ export interface Package {
   grossWeight?: Measurement;
   netWeight?: Measurement;
   netVolume?: Measurement;
+  netContent?: Measurement;
 }
 
 export type NutritionList = Partial<
