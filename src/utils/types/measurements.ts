@@ -7,4 +7,5 @@ export type MeasurementUnits = keyof typeof measurementUnits['units'];
 export interface Measurement {
   value: number;
   unit: MeasurementUnits;
+  estimate?: boolean;
 }
