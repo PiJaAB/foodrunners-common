@@ -82,6 +82,14 @@ export interface G_AdCampaign<
   maxClicks?: number | null;
   views?: number | null;
   maxViews?: number | null;
+  pendingViews?: number | null;
+  pendingClicks?: number | null;
+  pendingCheckouts?: number | null;
+  pendingCarts?: number | null;
+  pendingShoppingLists?: number | null;
+  checkouts?: number | null;
+  addedToCart?: number | null;
+  addedToShoppingList?: number | null;
   weight: number;
   target: G_AdTargets<
     ProductDocumentReference,
