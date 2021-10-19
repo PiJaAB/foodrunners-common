@@ -1,0 +1,34 @@
+name: Transfer source code to foodrunners
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Add live ssh config
+      run: |
+        mkdir -p $HOME/.ssh && cat << EOF >> $HOME/.ssh/config
+        Host foodrunners
+        User git
+        Hostname github.com
+        Identityfile $HOME/.ssh/deploy_foodrunners
+        EOF
+    - name: Add live deployment key 
+      run: |
+        cat << EOF > $HOME/.ssh/deploy_foodrunners
+        ${{secrets.FOODRUNNERS_DEPLOY_KEY}}
+        EOF
+        chmod 600 $HOME/.ssh/deploy_foodrunners
+    - name: Fetch history
+      run: git fetch --unshallow origin
+    - name: Add foodrunners remote
+      run: git remote add foodrunners foodrunners:Foodrunners-AB/common.git
+    - name: Push code to Foodrunners
+      run: git push -f foodrunners main:live
